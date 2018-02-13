@@ -4,7 +4,9 @@ imagetyperz-api-python2 - Imagetyperz API wrapper
 imagetyperzapi2 is a super easy to use bypass captcha API wrapper for imagetyperz.com captcha service
 
 ## Installation
+    pip install imagetyperzapi2
 
+or
     
     git clone https://github.com/imagetyperz-api/imagetyperz-api-python2
 
