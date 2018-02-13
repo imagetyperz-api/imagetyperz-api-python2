@@ -22,7 +22,6 @@ Simply require the module, set the auth details and start using the captcha serv
 
 ``` python
 from imagetyperzapi2 import ImageTyperzAPI
-from time import sleep
 ```
 Set access_token or username and password (legacy) for authentication
 
