@@ -18,6 +18,13 @@ def test_api():
     balance = ita.account_balance()                       # get account balance
     print 'Balance: {}'.format(balance)                 # print balance
 
+    # solve image captcha
+    # --------------------
+    # works with URL as well, if authenticated with token
+    print 'Solving captcha ...'
+    captcha_text = ita.solve_captcha('captcha.jpg')
+    print 'Captcha text: {}'.format(captcha_text)
+
     # solve recaptcha
     # check: http://www.imagetyperz.com/Forms/recaptchaapi.aspx on how to get page_url and googlekey
     # -----------------------------------------------------------------------------------------------
