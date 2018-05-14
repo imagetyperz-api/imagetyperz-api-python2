@@ -50,6 +50,9 @@ def test_api():
     # captcha_id = ita.submit_recaptcha(page_url, sitekey, '127.0.0.1:1234')
     # captcha_id = ita.submit_recaptcha(page_url, sitekey, '127.0.0.1:1234:user:password')	# proxy auth
 
+    # print (ita.captcha_id)               # get last captcha solved id
+    # print (ita.captcha_text)       	   # get last captcha solved text
+
     # print ita.recaptcha_id             # get last recaptcha solved id
     # print ita.recaptcha_response       # get last recaptcha solved response
 
