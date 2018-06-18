@@ -49,6 +49,7 @@ def test_api():
     # submit recaptcha with proxy (checks API docs for more info)
     # captcha_id = ita.submit_recaptcha(page_url, sitekey, '127.0.0.1:1234')
     # captcha_id = ita.submit_recaptcha(page_url, sitekey, '127.0.0.1:1234:user:password')	# proxy auth
+    # print ita.was_proxy_used(captcha_id)        # tells if proxy submitted (if any) was used or not, and if not used, reason
 
     # print (ita.captcha_id)               # get last captcha solved id
     # print (ita.captcha_text)       	   # get last captcha solved text
