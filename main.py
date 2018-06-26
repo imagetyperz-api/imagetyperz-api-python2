@@ -6,8 +6,8 @@ from time import sleep
 
 # solve captcha
 def test_api():
-    access_token = 'access_token_here'
     # get access token from: http://www.imagetyperz.com/Forms/ClientHome.aspx
+    access_token = 'access_token_here'
     ita = ImageTyperzAPI(access_token)      # init imagetyperz api obj
 
     # legacy way, will get deprecated at some point
@@ -17,20 +17,27 @@ def test_api():
     # ---------------------------
     balance = ita.account_balance()                       # get account balance
     print 'Balance: {}'.format(balance)                 # print balance
-
-    # solve image captcha
-    # --------------------
-    # works with URL as well, if authenticated with token
+    #
+    # # solve image captcha
+    # # --------------------
+    # # works with URL as well, if authenticated with token
     print 'Solving captcha ...'
     captcha_text = ita.solve_captcha('captcha.jpg')
     print 'Captcha text: {}'.format(captcha_text)
 
     # solve recaptcha
-    # check: http://www.imagetyperz.com/Forms/recaptchaapi.aspx on how to get page_url and googlekey
+    # check https://github.com/imagetyperz-api/API-docs#submit-recaptcha for more details
     # -----------------------------------------------------------------------------------------------
-    page_url = 'http://your_site_here.com'
-    sitekey = 'your_sitekey_here'
-    captcha_id = ita.submit_recaptcha(page_url, sitekey)        # submit captcha first, to get ID
+    recaptcha_params = {
+        'page_url' : 'page_url_here',
+        'sitekey' : 'sitekey_here',
+        'type' : 1,                     # optional, 1 - normal recaptcha, 2 - invisible recaptcha, 3 - v3 recaptcha, default: 1
+        #'v3_min_score' : .1,           # optional
+        #'v3_action' : 'homepage',      # optional
+        #'proxy': '126.45.34.53:345',    # or 126.45.34.53:123:joe:password
+        #'user_agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'    # optional
+    }
+    captcha_id = ita.submit_recaptcha(recaptcha_params)        # submit captcha first, to get ID
 
     # check if it's still in progress (waiting to be solved), every 10 seconds
     print 'Waiting for recaptcha to be solved ...'
@@ -45,10 +52,7 @@ def test_api():
     # ita = ImageTypersAPI(access_token, 123)  # init imagetyperz api obj with access_token and affiliate id
     # ita = ImageTypersAPI(access_token, 123, 60)  # init imagetyperz api obj with access_token, affid and timeout
     # ita.set_user_password('your_username', 'your_password') # in case you want to use user & pass instead of token (not recommended)
-    
-    # submit recaptcha with proxy (checks API docs for more info)
-    # captcha_id = ita.submit_recaptcha(page_url, sitekey, '127.0.0.1:1234')
-    # captcha_id = ita.submit_recaptcha(page_url, sitekey, '127.0.0.1:1234:user:password')	# proxy auth
+
     # print ita.was_proxy_used(captcha_id)        # tells if proxy submitted (if any) was used or not, and if not used, reason
 
     # print (ita.captcha_id)               # get last captcha solved id

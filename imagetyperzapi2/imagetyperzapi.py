@@ -12,7 +12,7 @@ from base64 import b64encode
 # endpoints
 # -------------------------------------------------------------------------------------------
 CAPTCHA_ENDPOINT = 'http://captchatypers.com/Forms/UploadFileAndGetTextNEW.ashx'
-RECAPTCHA_SUBMIT_ENDPOINT = 'http://captchatypers.com/captchaapi/UploadRecaptchaV1.ashx'
+RECAPTCHA_SUBMIT_ENDPOINT = 'http://captchatypers.com/captchaAPI/uploadrecaptchav1.ashx'
 RECAPTCHA_RETRIEVE_ENDPOINT = 'http://captchatypers.com/captchaapi/GetRecaptchaText.ashx'
 BALANCE_ENDPOINT = 'http://captchatypers.com/Forms/RequestBalance.ashx'
 BAD_IMAGE_ENDPOINT = 'http://captchatypers.com/Forms/SetBadImage.ashx'
@@ -20,7 +20,7 @@ PROXY_CHECK_ENDPOINT = 'http://captchatypers.com/captchaAPI/GetReCaptchaTextJSON
 
 CAPTCHA_ENDPOINT_CONTENT_TOKEN = 'http://captchatypers.com/Forms/UploadFileAndGetTextNEWToken.ashx'
 CAPTCHA_ENDPOINT_URL_TOKEN = 'http://captchatypers.com/Forms/FileUploadAndGetTextCaptchaURLToken.ashx'
-RECAPTCHA_SUBMIT_ENDPOINT_TOKEN = 'http://captchatypers.com/captchaapi/UploadRecaptchaToken.ashx'
+RECAPTCHA_SUBMIT_ENDPOINT_TOKEN = 'http://captchatypers.com/captchaAPI/uploadrecaptchatoken.ashx'
 RECAPTCHA_RETRIEVE_ENDPOINT_TOKEN = 'http://captchatypers.com/captchaapi/GetRecaptchaTextToken.ashx'
 BALANCE_ENDPOINT_TOKEN = 'http://captchatypers.com/Forms/RequestBalanceToken.ashx'
 BAD_IMAGE_ENDPOINT_TOKEN = 'http://captchatypers.com/Forms/SetBadImageToken.ashx'
@@ -161,7 +161,14 @@ class ImageTyperzAPI:
     # -------------------
     # ----------------------------------
     # ------------------------------
-    def submit_recaptcha(self, page_url, sitekey, proxy = None):
+    def submit_recaptcha(self, d):
+        page_url = d['page_url']
+        sitekey = d['sitekey']
+
+        # check for proxy
+        proxy = None
+        if d.has_key('proxy'): proxy = d['proxy']       # if proxy, add it
+
         # check if page_url and sitekey are != None
         if not page_url: raise Exception('provide a valid page_url')
         if not sitekey: raise Exception('provide a valid sitekey')
@@ -188,6 +195,15 @@ class ImageTyperzAPI:
         data['googlekey'] = sitekey
         if self._affiliate_id:
             data['affiliateid'] = self._affiliate_id
+
+        # user agent
+        if d.has_key('user_agent'): data['useragent'] = d['user_agent']
+
+        # v3
+        data['recaptchatype'] = 0
+        if d.has_key('type'): data['recaptchatype'] = d['type']
+        if d.has_key('v3_action'): data['captchaaction'] = d['v3_action']
+        if d.has_key('v3_min_score'): data['score'] = d['v3_min_score']
 
         # make request with all data
         response = self._session.post(url, data=data,
