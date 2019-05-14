@@ -114,6 +114,7 @@ class ImageTyperzAPI:
     def __init__(self, access_token, affiliate_id = 0, timeout = 120):
         self._access_token = access_token
         self._affiliate_id = affiliate_id
+        self._geetest = None
 
         # empty by default
         self._username = ''
