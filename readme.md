@@ -50,6 +50,11 @@ print 'Balance: {}'.format(balance)                 # print balance
 ``` python
 ita.solve_captcha('captcha.jpg', case_sensitive=False)
 ```
+(with optional parameters)
+```python
+ita.solve_captcha('captcha.jpg', is_case_sensitive = False, is_phrase = False, digits_only = False, letters_only = True, is_math = False, min_length = 2, max_length = 10)
+```
+
 **Works with both files and URLs**
 ``` python
 ita.solve_captcha('http://abc.com/your_captcha.jpg')   

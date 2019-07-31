@@ -23,6 +23,8 @@ def test_api():
     # # works with URL as well, if authenticated with token
     print 'Solving captcha ...'
     captcha_text = ita.solve_captcha('captcha.jpg')
+    # optional parameters for image solving
+    # captcha_text = ita.solve_captcha('captcha.jpg', is_case_sensitive = False, is_phrase = False, digits_only = False, letters_only = True, is_math = False, min_length = 2, max_length = 10)
     print 'Captcha text: {}'.format(captcha_text)
 
     # solve recaptcha
