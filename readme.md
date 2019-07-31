@@ -146,6 +146,15 @@ print (geetest_response)
 
 Response will look like this: `{'challenge': '...', 'validate': '...', 'seccode': '...'}`
 
+## Capy
+
+This captcha requires a `page_url` and `sitekey` in order to be solved by our system.
+Currently, in order to solve a capy captcha, you'll have to use the reCAPTCHA methods and only add `--capy` at the end of the `page_url`.
+Having that up, our system will pick it up as capy. Once workers have solved it, you'll have to use the reCAPTCHA retrieve endpoint, to get the response.
+
+**E.g** Original page url - `https://mysite.com`, capy page url `https://mysite.com--capy`
+
+
 ## Other methods/variables
 
 **Affiliate id**
