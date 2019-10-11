@@ -31,7 +31,7 @@ def test_api():
     # check https://github.com/imagetyperz-api/API-docs#submit-recaptcha for more details
     # -----------------------------------------------------------------------------------------------
     recaptcha_params = {
-        'page_url' : 'page_url_here',
+        'page_url' : 'page_url_here',   # add --capy or --hcaptcha at the end, to submit capy or hCaptcha
         'sitekey' : 'sitekey_here',
         'type' : 1,                     # optional, 1 - normal recaptcha, 2 - invisible recaptcha, 3 - v3 recaptcha, default: 1
         #'v3_min_score' : .1,           # optional
