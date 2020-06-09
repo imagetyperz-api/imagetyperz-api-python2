@@ -37,7 +37,8 @@ def test_api():
         #'v3_min_score' : .1,           # optional
         #'v3_action' : 'homepage',      # optional
         #'proxy': '126.45.34.53:345',    # or 126.45.34.53:123:joe:password
-        #'user_agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0'    # optional
+        #'user_agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0',    # optional
+        #'data-s': 'data-s-value-here'	# optional
     }
     captcha_id = ita.submit_recaptcha(recaptcha_params)        # submit captcha first, to get ID
 
